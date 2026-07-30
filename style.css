@@ -1,0 +1,365 @@
+/* إعدادات الخطوط والألوان الأساسية */
+@import url('https://googleapis.com');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --text-color: #ffffff;
+    --text-secondary: #chced4;
+    --primary-color: #00f2fe; /* نيون لبني */
+    --secondary-color: #4facfe;
+    --success-color: #00ff87; /* نيون أخضر */
+    --danger-color: #ff007f; /* نيون فوشيا */
+    --accent-color: #ffd700; /* ذهبي للـ Tags */
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --border-radius: 20px;
+}
+
+/* التغيير التلقائي عند تفعيل الوضع المظلم/المضيء عبر الـ JS */
+body.light-theme {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --text-secondary: #718096;
+    --primary-color: #4facfe;
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* الحاوية الرئيسية للعبة */
+.game-container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* التحكم في ظهور الشاشات */
+.screen {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* شاشة الإعداد والترحيب */
+.game-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, var(--primary-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-subtitle {
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* أزرار اختيار الأوضاع */
+.mode-selection {
+    margin-bottom: 25px;
+}
+
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.mode-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    color: var(--text-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+body.light-theme .mode-btn {
+    background: #f7fafc;
+    border-color: #e2e8f0;
+}
+
+.mode-btn:hover, .mode-btn.active {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    transform: scale(1.03);
+}
+
+/* قسم أسماء اللاعبين */
+.players-section {
+    margin-bottom: 30px;
+}
+
+#players-list {
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 15px;
+}
+
+/* تخصيص السكرول بار */
+#players-list::-webkit-scrollbar {
+    width: 6px;
+}
+#players-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.player-input-group {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.player-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+}
+
+body.light-theme .player-input {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.player-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+/* الأزرار الرئيسية */
+.primary-btn, .secondary-btn, .success-btn, .danger-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, var(--success-color), var(--secondary-color));
+    color: #000;
+}
+.primary-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 135, 0.4);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 2px dashed var(--primary-color);
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    padding: 10px;
+}
+.secondary-btn:hover {
+    background: rgba(0, 242, 254, 0.1);
+}
+
+/* شاشة اللعب وعرض الكروت */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+.icon-btn:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.score-display {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.turn-announcement {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+#current-player-name {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    font-weight: 900;
+    display: inline-block;
+    padding: 0 10px;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+/* كارت الموقف الافتراضي */
+.card-container {
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 40px 25px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
+}
+
+body.light-theme .card {
+    background: #f7fafc;
+    border-color: var(--secondary-color);
+}
+
+.card-tag {
+    position: absolute;
+    top: -15px;
+    background: var(--accent-color);
+    color: #000;
+    padding: 4px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.question-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    font-weight: 700;
+}
+
+/* أزرار التحكم باللعب */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.success-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    flex: 2;
+}
+.success-btn:hover {
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+}
+
+.danger-btn {
+    background: transparent;
+    border: 2px solid var(--danger-color);
+    color: var(--danger-color);
+    flex: 1;
+    font-size: 0.95rem;
+}
+.danger-btn:hover {
+    background: var(--danger-color);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+}
+
+/* أنيميشن بسيط عند تبديل الكروت */
+.card-bounce {
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* التوافق التام مع شاشات الموبايل الصغيرة */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 20px;
+    }
+    .game-title {
+        font-size: 1.8rem;
+    }
+    .question-text {
+        font-size: 1.1rem;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .danger-btn {
+        order: 2;
+    }
+}
