@@ -1,0 +1,184 @@
+// مصفوفة تحتوي على أقوى 50 موقفاً افتراضياً ومحرجاً ومصفى بدقة
+const questions = [
+    // --- تكنولوجيا (tech) ---
+    { text: "لو موبايلك اتعرض على شاشة للتلفزيون لمدة دقيقة، هتختار يعرضوا (الواتساب) ولا (الـ Search History)؟", category: "tech" },
+    { text: "لو جالك 10 آلاف دولار حالا، بشرط تسمح للشخص اللي على يمينك يقرأ آخر 5 شاتس بينك وبين كراشك؟", category: "tech" },
+    { text: "لو تليفونك ضاع والشرطة قالت مش هنرجعه غير لما تفتح الـ Hidden Folder قدام عيلتك كلها، هتوافق؟", category: "tech" },
+    { text: "لو هتاخد مليون جنيه بشرط إن كل ريكورد بعته في حياتك يتحول لنص ويتنشر على صفحتك، هتوافق؟", category: "tech" },
+    { text: "لو دخلت في غيبوبة، ومفيش حد هينقذك غير لو حد من الصحاب اللي قاعدين دخل يمسح بيانات موبايلك، تختار مين؟", category: "tech" },
+    { text: "لو شريك حياتك طلب الباسورد بتاع موبايلك حالا وبدون مقدمات، هتديهوله ولا هتنهي العلاقة؟", category: "tech" },
+    { text: "لو مجبر توري الشخص اللي قدامك آخر 3 صور في الـ Gallery عندك حالا، هتوريه إيه؟", category: "tech" },
+    { text: "لو طلعلك إبليكيشن بيكشف إنت بتراقب مين على السوشيال ميديا وبعت تنبيه ليهم كلهم، هتقفل حساباتك？", category: "tech" },
+    { text: "لو هتكسب سفرية لأمريكا بس بشرط تعمل لايك على أقدم صورة للكراش القديم قدام شريكك الحالي؟", category: "tech" },
+    { text: "لو في زرار يخليك تشوف شات أي حد من اللي قاعدين، هتختار شات مين ومين؟", category: "tech" },
+    { text: "لو انفتحت كاميرا موبايلك الأمامية لايف على فيسبوك وإنت لسه صاحي من النوم بوضع غريب، هتمسح الأكاونت؟", category: "tech" },
+    { text: "لو حد هكر حسابك وقال مش هيرجعه إلا لو بعتله فيديو وإنت بترقص شعبي حالا، هتعملها؟", category: "tech" },
+    { text: "لو خيروك تمسح حسابات السوشيال ميديا بتاعتك للأبد، أو تسيب أهلك يقرأوا رسايل المسنجر لمدة ساعة؟", category: "tech" },
+    { text: "لو نزل تطبيق يعرفك مين عملك سكرين شوت لستوري أو شات، مين أكتر حد خايف تلاقيه في القائمة؟", category: "tech" },
+    { text: "لو تليفونك اتعلم يقرأ أفكارك وينزلها بوستات تلقائي على إكس (تويتر)، هتعيش في صحراء؟", category: "tech" },
+    { text: "لو جوجل قرر ينشر سجل البحث (Search History) لآخر سنة لأقرب 3 أشخاص ليك، مين هما؟", category: "tech" },
+    { text: "لو شاشة موبايلك علقت على آخر فيديو اتفرجت عليه ومش عايزة تقفل قدام ناس غرباء، هتعمل إيه؟", category: "tech" },
+
+    // --- اجتماعي (social) ---
+    { text: "لو مجبر تعترف حالا بأكبر كدبة كدبتها على حد من اللي قاعدين، هتقول إيه؟", category: "social" },
+    { text: "لو شريك حياتك الحالي سألك: 'لو رجع بيك الزمن هتختارني تاني؟' والكل هيعرف لو كدبت، هتقول إيه؟", category: "social" },
+    { text: "لو عرفت إن أعز أصحابك بيخون شريكه، هتقول للشريك وتخسر صاحبك ولا هتمشي بمبدأ خاطيك؟", category: "social" },
+    { text: "لو جالك عرض تتجوز حد غني جداً بس مبتحبوش، وتتخلى عن حب حياتك، هتوافق؟", category: "social" },
+    { text: "لو رجعتلك فرصة تقعد مع إكس (Ex) قديم لمدة ساعة، هتقعد مع مين ومن ورا شريكك الحالي؟", category: "social" },
+    { text: "لو هتاخد نص مليون جنيه بشرط تقول لـ 'حماك/حماتك' المستقبليين أو الحاليين أكتر حاجة بتكرهها فيهم؟", category: "social" },
+    { text: "لو خيروك ترجع لشخص جرحك زمان مقابل إن كل مشاكلك المادية تتحل، هترجع؟", category: "social" },
+    { text: "لو عرفت إن في حد من قرايبك بيمر بأزمة مادية ومعاك فلوس زيادة، هتسلفه ولا هتعمل نفسك مش هنا؟", category: "social" },
+    { text: "لو مديرك في الشغل سألك عن غلطة زميلك اللي بتحبه عشان يرفده أو تترفد إنت، هتعمل إيه؟", category: "social" },
+    { text: "لو خيروك تعرف مرتبات كل اللي قاعدين بالتفصيل مقابل إنهم يعرفوا كل تفاصيل حسابك البنكي وديونك؟", category: "social" },
+    { text: "لو لقيت شنطة فيها مليون جنيه في الشارع وعرفتها بتاعة مين (وشخص غني)، هترجعها ولا هتاخدها؟", category: "social" },
+    { text: "لو مجبر تدفع نص مرتبك الشهر ده لشخص من القاعدة عشان محتاجه، هتختار مين؟", category: "social" },
+    { text: "لو والدك أو والدتك قرروا يفتحوا معاك موضوع 'الثقافة الجنسية' حالا قدام أصحابك، هتتصرف إزاي؟", category: "social" },
+    { text: "لو اتعزمت على فرح الإكس (Ex)، هتروح وتلبس أشيك حاجة عندك ولا هتعمل حجة؟", category: "social" },
+    { text: "لو حماتك طبخت أكلة طعمها سيء جداً وسألتك عن رأيك قدام العيلة، هتقول الحقيقة؟", category: "social" },
+    { text: "مين أكتر واحد في القاعدة دي تحس إنه 'منافق' وبيتكلم ورا الناس؟", category: "social" },
+    { text: "لو اضطريت تسلف مبلغ كبير جداً لشخص من اللي قاعدين وتضمن إنه هيرجعه، مين أقل واحد تثق فيه؟", category: "social" },
+    { text: "مين الشخص هنا اللي تحس إنه بيمثل إنه بيحبك بس هو جواه غيرة منك؟", category: "social" },
+    { text: "لو خطيبتك/شريكك قالك اقطع علاقتك بواحد بس من صحابك اللي قاعدين دول، هتضحي بمين؟", category: "social" },
+
+    // --- فضائح (scandal) ---
+    { text: "لو في فيديو ليك وإنت بتعمل تصرف غبي أو مخجل جداً وإنت لوحدك، وتمن حذفه هو إنك تكسر ساعتك أو موبايلك حالا؟", category: "scandal" },
+    { text: "لو صحيت لقيت نفسك في جسم الشخص اللي بتكرهه، إيه أول حاجة مؤذية هتعملها فيه؟", category: "scandal" },
+    { text: "لو مجبر تحكي أتعس/أفشل موقف رومانسي حصلك في حياتك بالتفصيل حالا، هتعمل إيه؟", category: "scandal" },
+    { text: "لو خيروك تعيش أسبوع كامل من غير ديدورانت (مزيل عرق) أو تغسل سنانك قدام الناس، هتختار إيه؟", category: "scandal" },
+    { text: "لو رجع بيك الزمن لتالتة إعدادي، إيه أكتر تصرف 'كرينج' عملته ونفسك تمسحه من ذاكرة البشر؟", category: "scandal" },
+    { text: "لو دخلت الحمام ومفيش مناديل، تختار تستخدم (شرابك) ولا تطلب من الشخص اللي بره (وبتكرّهه) يجيبلك؟", category: "scandal" },
+    { text: "لو ريحة بوق الشخص اللي بتكلمه وحشة جداً وهو مديرك، هتقوله ولا هتحاول تستحمل وتغمى عليك؟", category: "scandal" },
+    { text: "لو نمت في مواصلات عامة وصحيت لقيت نفسك مخيل على كتف شخص غريب وريالتك نازلة، هتعمل إيه؟", category: "scandal" },
+    { text: "لو بعت سكرين شوت لشخص بتشتمه.. بالغلـط لنفس الشخص، هترقع الموقف إزاي؟", category: "scandal" },
+    { text: "لو هتاخد 10 مليون جنيه بشرط تقضي سنة كاملة في جزيرة لوحدك مع 'الإكس' ومعندكوش نت؟", category: "scandal" },
+    { text: "لو مجبر تختار تاكل أكلة مقرفة جداً حالا، أو تسيب الشخص اللي جنبك يفتش في محفظتك ورسايلك لمدة ربع ساعة؟", category: "scandal" },
+    { text: "لو عرفت إن العالم هينتهي كمان 24 ساعة، مين أول شخص هتروح تقوله 'أنا بكرهك' ومين هتقوله 'بحبك'؟", category: "scandal" },
+    { text: "لو صحيت لقيت نفسك تقدر تقرأ أفكار الناس، تفتكر أول فكرة هتقراها من الشخص اللي قدامك حالا هتكون إيه؟", category: "scandal" },
+    { text: "لو خرجت من الحمام واكتشفت إن سوستة البنطلون مفتوحة طول قعدة الكافيه، هتعمل نفسك مش واخد بالك؟", category: "scandal" }
+];
+let players = [];
+let currentQuestionIndex = 0;
+let currentPlayerIndex = 0;
+let selectedMode = 'all';
+let filteredQuestions = [];
+
+const setupScreen = document.getElementById('setup-screen');
+const gameScreen = document.getElementById('game-screen');
+const playersList = document.getElementById('players-list');
+const addPlayerBtn = document.getElementById('add-player-btn');
+const startGameBtn = document.getElementById('start-game-btn');
+const backBtn = document.getElementById('back-btn');
+const themeToggle = document.getElementById('theme-toggle');
+const currentPlayerName = document.getElementById('current-player-name');
+const questionCard = document.getElementById('question-card');
+const cardCategory = document.getElementById('card-category');
+const questionText = document.getElementById('question-text');
+const nextBtn = document.getElementById('next-btn');
+const skipBtn = document.getElementById('skip-btn');
+const modeButtons = document.querySelectorAll('.mode-btn');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    themeToggle.innerHTML = isLight ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        modeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedMode = btn.getAttribute('data-mode');
+    });
+});
+
+addPlayerBtn.addEventListener('click', () => {
+    const playerGroups = document.querySelectorAll('.player-input-group');
+    const newPlayerNumber = playerGroups.length + 1;
+    
+    const newInputGroup = document.createElement('div');
+    newInputGroup.classList.add('player-input-group');
+    newInputGroup.innerHTML = `<input type="text" class="player-input" placeholder="اسم اللاعب ${newPlayerNumber}...">`;
+    playersList.appendChild(newInputGroup);
+    playersList.scrollTop = playersList.scrollHeight;
+});
+
+startGameBtn.addEventListener('click', () => {
+    players = [];
+    const inputs = document.querySelectorAll('.player-input');
+    
+    inputs.forEach(input => {
+        const name = input.value.trim();
+        if (name !== "") players.push(name);
+    });
+
+    if (players.length < 2) {
+        players = ["لاعب 1", "لاعب 2"];
+    }
+
+    if (selectedMode === 'all') {
+        filteredQuestions = [...questions];
+    } else {
+        filteredQuestions = questions.filter(q => q.category === selectedMode);
+    }
+
+    filteredQuestions.sort(() => Math.random() - 0.5);
+
+    currentQuestionIndex = 0;
+    currentPlayerIndex = 0;
+
+    setupScreen.classList.remove('active');
+    gameScreen.classList.add('active');
+
+    showNextQuestion();
+});
+
+backBtn.addEventListener('click', () => {
+    gameScreen.classList.remove('active');
+    setupScreen.classList.add('active');
+    questionText.innerText = "اضغط على التالي لسحب الموقف الأول!";
+    cardCategory.innerText = "لو.. 🤔";
+});
+
+function showNextQuestion() {
+    if (filteredQuestions.length === 0) return;
+
+    if (currentQuestionIndex >= filteredQuestions.length) {
+        filteredQuestions.sort(() => Math.random() - 0.5);
+        currentQuestionIndex = 0;
+    }
+
+    const player = players[currentPlayerIndex];
+    currentPlayerName.innerText = player;
+
+    const currentQuestion = filteredQuestions[currentQuestionIndex];
+    questionText.innerText = currentQuestion.text;
+
+    let categoryName = "عام 💥";
+    if (currentQuestion.category === 'tech') categoryName = "تكنولوجيا 📱";
+    if (currentQuestion.category === 'social') categoryName = "اجتماعي 🤐";
+    if (currentQuestion.category === 'scandal') categoryName = "فضائح 🤦‍♂️";
+    cardCategory.innerText = categoryName;
+
+    questionCard.classList.remove('card-bounce');
+    void questionCard.offsetWidth; 
+    questionCard.classList.add('card-bounce');
+
+    currentQuestionIndex++;
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+}
+
+nextBtn.addEventListener('click', showNextQuestion);
+
+skipBtn.addEventListener('click', () => {
+    const punishments = [
+        "اشرب كوباية مية كاملة بـ بوق واحد وبدون نفس!",
+        "سيب الشخص اللي على يمينك يضربك قفا خفيف أو يحكم عليك!",
+        "اغسل وشك بمية ساقعة حالا وارجع كمل الجيم!",
+        "أقعد على الأرض دقيقتين ومفتفتحش بوقك بكلمة!",
+        "قول نكتة بايخة تضحك القعدة كلها وإلا هتتعاقب تاني!"
+    ];
+    const randomPunishment = punishments[Math.floor(Math.random() * punishments.length)];
+    
+    cardCategory.innerText = "🚨 عِقَاب الِانْسِحَاب!";
+    questionText.innerHTML = `<span style="color: #ff007f; font-weight: 900;">عقابك:</span> ${randomPunishment}`;
+});
