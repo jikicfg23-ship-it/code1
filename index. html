@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة لو.. | مواقف افتراضية محرجة</title>
-    <!-- ربط ملف الستاين وسنتعامل معه في الخطوة القادمة -->
+    <title>لعبة لَوْ.. | مواقف افتراضية</title>
     <link rel="stylesheet" href="style.css">
-    <!-- أيقونات FontAwesome لإضافة لمسة جمالية -->
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
 
     <div class="game-container">
-        <!-- الشاشة الأولى: إعداد اللعبة وإضافة اللاعبين -->
+        <!-- شاشة الإعداد -->
         <div id="setup-screen" class="screen active">
             <h1 class="game-title">🤔 لعبة لَوْ..</h1>
-            <p class="game-subtitle">مواقف افتراضية محرجة للغاية.. ارفع حدة الإثارة في القعدة!</p>
+            <p class="game-subtitle">مواقف افتراضية محرجة تكشف المستور وتتحكم في الخصوصية!</p>
             
             <div class="mode-selection">
-                <h3>اختر وضع اللعب:</h3>
+                <h3>اختر الفئة:</h3>
                 <div class="modes-grid">
                     <button class="mode-btn active" data-mode="all">🔥 الكل</button>
                     <button class="mode-btn" data-mode="tech">📱 تكنولوجيا</button>
@@ -28,7 +26,7 @@
             </div>
 
             <div class="players-section">
-                <h3><i class="fa-solid fa-users"></i> أسماء اللاعبين:</h3>
+                <h3><i class="fa-solid fa-users"></i> اللاعبين:</h3>
                 <div id="players-list">
                     <div class="player-input-group">
                         <input type="text" class="player-input" placeholder="اسم اللاعب الأول...">
@@ -40,14 +38,14 @@
                 <button id="add-player-btn" class="secondary-btn"><i class="fa-solid fa-plus"></i> إضافة لاعب جديد</button>
             </div>
 
-            <button id="start-game-btn" class="primary-btn">ابدأ اللعب الآن <i class="fa-solid fa-play"></i></button>
+            <button id="start-game-btn" class="primary-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></button>
         </div>
 
-        <!-- الشاشة الثانية: شاشة اللعب وعرض المواقف -->
+        <!-- شاشة اللعب والـ 50 كارت -->
         <div id="game-screen" class="screen">
             <div class="game-header">
                 <button id="back-btn" class="icon-btn"><i class="fa-solid fa-arrow-right"></i></button>
-                <div class="score-display">اللاعب الحالي</div>
+                <div class="score-display">الموقف الحالي</div>
                 <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
             </div>
 
@@ -55,23 +53,26 @@
                 دور اللاعب: <span id="current-player-name">أحمد</span>
             </div>
 
-            <!-- كارت الموقف -->
-            <div class="card-container">
-                <div id="question-card" class="card">
-                    <div class="card-tag" id="card-category">تكنولوجيا 📱</div>
-                    <p class="question-text" id="question-text">اضغط على الزر بالأسفل لسحب الموقف الأول!</p>
+            <!-- الكارت الأنيق -->
+            <div class="card-wrapper">
+                <div id="question-card" class="elegant-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-tag" id="card-category">لو.. 🤔</div>
+                        <p class="question-text" id="question-text">اضغط على التالي لسحب الموقف الأول!</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- أزرار التحكم أثناء اللعب -->
             <div class="action-buttons">
-                <button id="skip-btn" class="danger-btn"><i class="fa-solid fa-circle-xmark"></i> انسحاب (عقاب)</button>
+                <button id="skip-btn" class="danger-btn"><i class="fa-solid fa-circle-xmark"></i> انسحاب</button>
                 <button id="next-btn" class="success-btn">الموقف التالي <i class="fa-solid fa-circle-chevron-left"></i></button>
             </div>
         </div>
     </div>
 
-    <!-- ربط ملف الجافاسكريبت المسؤول عن الـ 150 موقف والمنطق البرمجي -->
-    <script src="script.js"></script>
+    <!-- استدعاء ملف البيانات أولاً ثم ملف المحرك -->
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
